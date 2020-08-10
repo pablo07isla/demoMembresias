@@ -36,16 +36,16 @@ public class ClienteTitular {
     @Email
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "NIT_EMPRESA")
     private Empresa nitEmpresa;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente", cascade = CascadeType.ALL)
-    @JoinColumn(name = "Id_Beneficiarios")
-    private List<Beneficiarios> beneficiarios;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente")
+    // @JoinColumn(name = "Id_Beneficiarios")
+    private List<Beneficiario> listBeneficiarios;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente")
-    @JoinColumn(name = "Fechas_Visita")
-    private List<Visita> fechasVisita;
+    // @JoinColumn(name = "Fechas_Visita")
+    private List<Visita> listFechasVisita;
 
 }
