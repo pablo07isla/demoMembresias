@@ -1,6 +1,5 @@
 package com.pabloisla.demo.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.pabloisla.demo.modelos.Empresa;
@@ -18,6 +17,11 @@ public class EmpresaService {
     public List<Empresa> listAll() {
 
         return repoEmpresa.findAll();
+
+    }
+
+    public void add(Empresa empresa) {
+        repoEmpresa.save(empresa);
     }
 
 }
