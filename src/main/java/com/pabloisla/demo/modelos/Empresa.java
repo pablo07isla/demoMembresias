@@ -6,22 +6,16 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 @Entity
 @Table(name = "Empresas")
 public class Empresa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
     @Column(name = "nit_empresa")
     private Integer nitEmpresa;
     @Column(name = "razon_social")
@@ -33,28 +27,11 @@ public class Empresa {
     @Column(name = "persona_contacto")
     private String personaContacto;
 
-    // @OneToMany(mappedBy = "nitEmpresa", cascade = CascadeType.ALL)
-    // private List<ClienteTitular> clientes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Cliente_fk")
+    private List<ClienteTitular> clientes = new ArrayList<>();
 
     public Empresa() {
-    }
-
-    public Empresa(Integer id, Integer nitEmpresa, String razonSocial, String telefono, String email,
-            String personaContacto) {
-        this.id = id;
-        this.nitEmpresa = nitEmpresa;
-        this.razonSocial = razonSocial;
-        this.telefono = telefono;
-        this.email = email;
-        this.personaContacto = personaContacto;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getNitEmpresa() {
@@ -95,6 +72,31 @@ public class Empresa {
 
     public void setPersonaContacto(String personaContacto) {
         this.personaContacto = personaContacto;
+    }
+
+    public List<ClienteTitular> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<ClienteTitular> clientes) {
+        this.clientes = clientes;
+    }
+
+    public Empresa(Integer nitEmpresa, String razonSocial, String telefono, String email, String personaContacto,
+            List<ClienteTitular> clientes) {
+        this.nitEmpresa = nitEmpresa;
+        this.razonSocial = razonSocial;
+        this.telefono = telefono;
+        this.email = email;
+        this.personaContacto = personaContacto;
+        this.clientes = clientes;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa [clientes=" + clientes + ", email=" + email + ", nitEmpresa=" + nitEmpresa
+                + ", personaContacto=" + personaContacto + ", razonSocial=" + razonSocial + ", telefono=" + telefono
+                + "]";
     }
 
 }
