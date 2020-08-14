@@ -27,6 +27,10 @@ public class ClienteTitular {
     @Email
     private String email;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Nit_Empresa")
+    private Empresa nitEmpresa;
+
     // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =
     // "idCliente")
     // // @JoinColumn(name = "Id_Beneficiarios")
@@ -37,6 +41,15 @@ public class ClienteTitular {
     // private List<Visita> listFechasVisita;
 
     public ClienteTitular() {
+    }
+
+    public ClienteTitular(Long idCliente, String nombreApellTit, String celular, @Email String email,
+            Empresa nitEmpresa) {
+        this.idCliente = idCliente;
+        this.nombreApellTit = nombreApellTit;
+        this.celular = celular;
+        this.email = email;
+        this.nitEmpresa = nitEmpresa;
     }
 
     public Long getIdCliente() {
@@ -71,17 +84,18 @@ public class ClienteTitular {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "ClienteTitular [celular=" + celular + ", email=" + email + ", idCliente=" + idCliente
-                + ", nombreApellTit=" + nombreApellTit + "]";
+    public Empresa getNitEmpresa() {
+        return nitEmpresa;
     }
 
-    public ClienteTitular(Long idCliente, String nombreApellTit, String celular, @Email String email) {
-        this.idCliente = idCliente;
-        this.nombreApellTit = nombreApellTit;
-        this.celular = celular;
-        this.email = email;
+    public void setNitEmpresa(Empresa nitEmpresa) {
+        this.nitEmpresa = nitEmpresa;
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteTitular [celular=" + celular + ", email=" + email + ", idCliente=" + idCliente + ", nitEmpresa="
+                + nitEmpresa + ", nombreApellTit=" + nombreApellTit + "]";
     }
 
 }

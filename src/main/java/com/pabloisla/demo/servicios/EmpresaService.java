@@ -24,4 +24,12 @@ public class EmpresaService {
         repoEmpresa.save(empresa);
     }
 
+    public Empresa get(Integer nit) {
+        return repoEmpresa.findById(nit).get();
+    }
+
+    public void delete(Integer nit) {
+        repoEmpresa.deleteById(nit);
+    }
+
 }
