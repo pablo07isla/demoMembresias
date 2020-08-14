@@ -27,9 +27,9 @@ public class Empresa {
     @Column(name = "persona_contacto")
     private String personaContacto;
 
-    // @OneToMany(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "Cliente_fk")
-    // private List<ClienteTitular> clientes = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "NitEmpresa_fk")
+    private List<ClienteTitular> clientes = new ArrayList<>();
 
     public Empresa() {
     }
@@ -74,18 +74,29 @@ public class Empresa {
         this.personaContacto = personaContacto;
     }
 
-    public Empresa(Integer nitEmpresa, String razonSocial, String telefono, String email, String personaContacto) {
+    public List<ClienteTitular> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<ClienteTitular> clientes) {
+        this.clientes = clientes;
+    }
+
+    public Empresa(Integer nitEmpresa, String razonSocial, String telefono, String email, String personaContacto,
+            List<ClienteTitular> clientes) {
         this.nitEmpresa = nitEmpresa;
         this.razonSocial = razonSocial;
         this.telefono = telefono;
         this.email = email;
         this.personaContacto = personaContacto;
+        this.clientes = clientes;
     }
 
     @Override
     public String toString() {
-        return "Empresa [email=" + email + ", nitEmpresa=" + nitEmpresa + ", personaContacto=" + personaContacto
-                + ", razonSocial=" + razonSocial + ", telefono=" + telefono + "]";
+        return "Empresa [clientes=" + clientes + ", email=" + email + ", nitEmpresa=" + nitEmpresa
+                + ", personaContacto=" + personaContacto + ", razonSocial=" + razonSocial + ", telefono=" + telefono
+                + "]";
     }
 
 }
