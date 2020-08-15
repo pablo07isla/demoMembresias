@@ -27,8 +27,7 @@ public class Empresa {
     @Column(name = "persona_contacto")
     private String personaContacto;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "NitEmpresa_fk")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nitEmpresa")
     private List<ClienteTitular> clientes = new ArrayList<>();
 
     public Empresa() {
@@ -73,13 +72,21 @@ public class Empresa {
     public void setPersonaContacto(String personaContacto) {
         this.personaContacto = personaContacto;
     }
-
-    public List<ClienteTitular> getClientes() {
-        return clientes;
-    }
+    // #este getter se anula para que no aparezca en lsa consultas y se hagan
+    // infinitas por el mapeo que tiene
+    // public List<ClienteTitular> getClientes() {
+    // return clientes;
+    // }
 
     public void setClientes(List<ClienteTitular> clientes) {
         this.clientes = clientes;
+    }
+
+    @Override
+    public String toString() {
+        return "Empresa [clientes=" + clientes + ", email=" + email + ", nitEmpresa=" + nitEmpresa
+                + ", personaContacto=" + personaContacto + ", razonSocial=" + razonSocial + ", telefono=" + telefono
+                + "]";
     }
 
     public Empresa(Integer nitEmpresa, String razonSocial, String telefono, String email, String personaContacto,
@@ -92,11 +99,9 @@ public class Empresa {
         this.clientes = clientes;
     }
 
-    @Override
-    public String toString() {
-        return "Empresa [clientes=" + clientes + ", email=" + email + ", nitEmpresa=" + nitEmpresa
-                + ", personaContacto=" + personaContacto + ", razonSocial=" + razonSocial + ", telefono=" + telefono
-                + "]";
+    // este constructor refiere al mapeo de la entidad clienteTitular
+    public Empresa(Integer nitEmpresa) {
+        this.nitEmpresa = nitEmpresa;
     }
 
 }

@@ -1,11 +1,15 @@
 package com.pabloisla.demo.modelos;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 
@@ -27,20 +31,28 @@ public class ClienteTitular {
     @Email
     private String email;
 
-    // @ManyToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name = "Nit_Empresa")
-    // private Empresa nitEmpresa;
+    @ManyToOne
+    @JoinColumn(name = "Nit_Empresa")
+    private Empresa nitEmpresa;
 
-    // @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy =
-    // "idCliente")
-    // // @JoinColumn(name = "Id_Beneficiarios")
-    // private List<Beneficiario> listBeneficiarios;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente")
+    private List<Beneficiario> listBeneficiarios;
 
     // @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente")
     // // @JoinColumn(name = "Fechas_Visita")
     // private List<Visita> listFechasVisita;
 
     public ClienteTitular() {
+    }
+
+    public ClienteTitular(Long idCliente, String nombreApellTit, String celular, @Email String email,
+            Empresa nitEmpresa, List<Beneficiario> listBeneficiarios) {
+        this.idCliente = idCliente;
+        this.nombreApellTit = nombreApellTit;
+        this.celular = celular;
+        this.email = email;
+        this.nitEmpresa = nitEmpresa;
+        this.listBeneficiarios = listBeneficiarios;
     }
 
     public Long getIdCliente() {
@@ -73,6 +85,22 @@ public class ClienteTitular {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Empresa getNitEmpresa() {
+        return nitEmpresa;
+    }
+
+    public void setNitEmpresa(Empresa nitEmpresa) {
+        this.nitEmpresa = nitEmpresa;
+    }
+
+    public List<Beneficiario> getListBeneficiarios() {
+        return listBeneficiarios;
+    }
+
+    public void setListBeneficiarios(List<Beneficiario> listBeneficiarios) {
+        this.listBeneficiarios = listBeneficiarios;
     }
 
 }
