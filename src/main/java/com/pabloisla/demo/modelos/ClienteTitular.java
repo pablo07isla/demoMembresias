@@ -38,21 +38,25 @@ public class ClienteTitular {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente")
     private List<Beneficiario> listBeneficiarios;
 
-    // @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente")
-    // // @JoinColumn(name = "Fechas_Visita")
-    // private List<Visita> listFechasVisita;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente")
+    private List<Visita> listFechasVisita;
 
     public ClienteTitular() {
     }
 
     public ClienteTitular(Long idCliente, String nombreApellTit, String celular, @Email String email,
-            Empresa nitEmpresa, List<Beneficiario> listBeneficiarios) {
+            Empresa nitEmpresa, List<Beneficiario> listBeneficiarios, List<Visita> listFechasVisita) {
         this.idCliente = idCliente;
         this.nombreApellTit = nombreApellTit;
         this.celular = celular;
         this.email = email;
         this.nitEmpresa = nitEmpresa;
         this.listBeneficiarios = listBeneficiarios;
+        this.listFechasVisita = listFechasVisita;
+    }
+
+    public ClienteTitular(Long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public Long getIdCliente() {
@@ -101,6 +105,21 @@ public class ClienteTitular {
 
     public void setListBeneficiarios(List<Beneficiario> listBeneficiarios) {
         this.listBeneficiarios = listBeneficiarios;
+    }
+
+    public List<Visita> getListFechasVisita() {
+        return listFechasVisita;
+    }
+
+    public void setListFechasVisita(List<Visita> listFechasVisita) {
+        this.listFechasVisita = listFechasVisita;
+    }
+
+    @Override
+    public String toString() {
+        return "ClienteTitular [celular=" + celular + ", email=" + email + ", idCliente=" + idCliente
+                + ", listBeneficiarios=" + listBeneficiarios + ", listFechasVisita=" + listFechasVisita
+                + ", nitEmpresa=" + nitEmpresa + ", nombreApellTit=" + nombreApellTit + "]";
     }
 
 }
