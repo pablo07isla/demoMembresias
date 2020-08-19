@@ -35,10 +35,10 @@ public class ClienteTitular {
     @JoinColumn(name = "Nit_Empresa")
     private Empresa nitEmpresa;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente")
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "idCliente", orphanRemoval = true)
     private List<Beneficiario> listBeneficiarios;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "idCliente", orphanRemoval = true)
     private List<Visita> listFechasVisita;
 
     public ClienteTitular() {

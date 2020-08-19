@@ -27,7 +27,7 @@ public class Empresa {
     @Column(name = "persona_contacto")
     private String personaContacto;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nitEmpresa")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "nitEmpresa", orphanRemoval = true)
     private List<ClienteTitular> clientes = new ArrayList<>();
 
     public Empresa() {

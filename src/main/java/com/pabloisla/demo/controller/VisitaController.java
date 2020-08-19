@@ -29,8 +29,8 @@ public class VisitaController {
     }
 
     @PostMapping("/visitas")
-    public void agregar(@RequestBody Visita cliente) {
-        serviceVisita.add(cliente);
+    public void agregar(@RequestBody Visita visita) {
+        serviceVisita.add(visita);
     }
 
     @GetMapping("/visitas/{id}")
