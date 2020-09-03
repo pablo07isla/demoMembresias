@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import com.pabloisla.demo.modelos.Beneficiario;
-import com.pabloisla.demo.modelos.ClienteTitular;
 import com.pabloisla.demo.servicios.BeneficiarioService;
 
 import org.springframework.beans.factory.annotation.Autowired;
